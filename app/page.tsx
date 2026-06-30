@@ -11,17 +11,27 @@ import {
   TrendingUp,
   Eye,
   Zap,
-  Shield,
   BarChart3,
-  ArrowRight,
-  CheckCircle2,
-  Sparkles,
   Target,
+  ArrowRight,
+  Check,
+  Sparkles,
   Layers,
+  Globe,
   Menu,
   X,
 } from "lucide-react";
 import { useState } from "react";
+
+interface PricingTier {
+  name: string;
+  price: string;
+  period: string;
+  description: string;
+  features: string[];
+  highlighted: boolean;
+  badge?: string;
+}
 
 interface Feature {
   icon: React.ReactNode;
@@ -36,60 +46,45 @@ interface Step {
   icon: React.ReactNode;
 }
 
-interface PricingPlan {
-  name: string;
-  price: string;
-  period: string;
-  description: string;
-  features: string[];
-  highlighted: boolean;
-  badge?: string;
-}
-
-interface FaqItem {
-  question: string;
-  answer: string;
-}
-
-export default function LandingPage() {
+export default function Page() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const features: Feature[] = [
     {
-      icon: <Eye className="h-6 w-6 text-violet-500" />,
-      title: "Brand Perception Audits",
+      icon: <Eye className="h-6 w-6 text-indigo-500" />,
+      title: "AI Visibility Tracking",
       description:
-        "Understand how AI models perceive and represent your brand across ChatGPT, Perplexity, Gemini, and other AI search engines.",
+        "Monitor how your brand appears across AI-generated search results in real time. Know exactly where you stand.",
     },
     {
-      icon: <Search className="h-6 w-6 text-violet-500" />,
-      title: "AI Search Visibility Tracking",
+      icon: <Brain className="h-6 w-6 text-indigo-500" />,
+      title: "Strategic Recommendations",
       description:
-        "Monitor your brand presence across AI-powered search experiences in real-time with comprehensive dashboards.",
+        "Get actionable insights powered by AI to improve your positioning in AI search results, not just reports.",
     },
     {
-      icon: <TrendingUp className="h-6 w-6 text-violet-500" />,
-      title: "Opportunity Discovery",
+      icon: <TrendingUp className="h-6 w-6 text-indigo-500" />,
+      title: "Growth Intelligence",
       description:
-        "Identify untapped opportunities where your brand can gain visibility in AI-generated responses and recommendations.",
+        "Identify opportunities and trends before your competitors. Turn AI search data into a growth engine.",
     },
     {
-      icon: <Brain className="h-6 w-6 text-violet-500" />,
-      title: "Competitive Intelligence",
+      icon: <BarChart3 className="h-6 w-6 text-indigo-500" />,
+      title: "Competitive Analysis",
       description:
-        "Compare your AI search presence against competitors and uncover strategic gaps to exploit.",
+        "Understand how you compare to competitors in AI-generated answers and discover gaps to exploit.",
     },
     {
-      icon: <BarChart3 className="h-6 w-6 text-violet-500" />,
-      title: "Performance Analytics",
+      icon: <Target className="h-6 w-6 text-indigo-500" />,
+      title: "Intent Mapping",
       description:
-        "Deep analytics on how your visibility changes over time with actionable insights and trend detection.",
+        "Map user intent patterns across AI platforms to align your content with what AI models recommend.",
     },
     {
-      icon: <Shield className="h-6 w-6 text-violet-500" />,
-      title: "Brand Safety Monitoring",
+      icon: <Layers className="h-6 w-6 text-indigo-500" />,
+      title: "Multi-Platform Coverage",
       description:
-        "Get alerted when AI models misrepresent your brand or associate it with inaccurate information.",
+        "Track visibility across ChatGPT, Perplexity, Google AI Overviews, and more from a single dashboard.",
     },
   ];
 
@@ -98,60 +93,60 @@ export default function LandingPage() {
       number: "01",
       title: "Connect Your Brand",
       description:
-        "Set up your brand profile with key identifiers, competitors, and target topics to monitor across AI search platforms.",
-      icon: <Target className="h-8 w-8 text-violet-500" />,
+        "Set up your brand profile, keywords, and competitors in minutes. Our system immediately begins scanning AI search platforms.",
+      icon: <Globe className="h-8 w-8 text-indigo-500" />,
     },
     {
       number: "02",
-      title: "Audit & Analyze",
+      title: "Analyze AI Results",
       description:
-        "Our platform scans AI search engines to understand how your brand is perceived, mentioned, and recommended.",
-      icon: <Layers className="h-8 w-8 text-violet-500" />,
+        "Luminr continuously monitors how AI models reference and recommend your brand across thousands of queries.",
+      icon: <Search className="h-8 w-8 text-indigo-500" />,
     },
     {
       number: "03",
-      title: "Discover Opportunities",
+      title: "Get Strategic Insights",
       description:
-        "Receive actionable insights on where your brand can improve visibility and how to influence AI-generated responses.",
-      icon: <Sparkles className="h-8 w-8 text-violet-500" />,
+        "Receive prioritized recommendations to improve your AI search presence, with clear impact projections.",
+      icon: <Sparkles className="h-8 w-8 text-indigo-500" />,
     },
     {
       number: "04",
-      title: "Grow & Optimize",
+      title: "Grow Your Visibility",
       description:
-        "Implement strategic recommendations and track your progress as your AI search visibility improves over time.",
-      icon: <Zap className="h-8 w-8 text-violet-500" />,
+        "Execute data-driven strategies and track improvements in real-time as your AI search visibility climbs.",
+      icon: <TrendingUp className="h-8 w-8 text-indigo-500" />,
     },
   ];
 
-  const pricingPlans: PricingPlan[] = [
+  const pricingTiers: PricingTier[] = [
     {
       name: "Starter",
-      price: "$149",
+      price: "$99",
       period: "/month",
-      description: "For growing brands getting started with AI search intelligence.",
+      description: "For small businesses beginning their AI search journey.",
       features: [
-        "1 brand profile",
-        "3 AI platform monitoring",
+        "Track up to 50 keywords",
+        "3 competitor profiles",
         "Weekly visibility reports",
-        "Basic perception audit",
+        "Basic recommendations",
         "Email support",
       ],
       highlighted: false,
     },
     {
-      name: "Professional",
-      price: "$399",
+      name: "Growth",
+      price: "$299",
       period: "/month",
-      description: "For teams serious about dominating AI search visibility.",
+      description: "For growing teams serious about AI search dominance.",
       features: [
-        "3 brand profiles",
-        "All AI platform monitoring",
+        "Track up to 500 keywords",
+        "10 competitor profiles",
         "Daily visibility reports",
-        "Advanced perception audits",
-        "Competitive intelligence",
-        "Opportunity discovery",
+        "Advanced strategic insights",
+        "Multi-platform tracking",
         "Priority support",
+        "Custom dashboards",
       ],
       highlighted: true,
       badge: "Most Popular",
@@ -160,64 +155,33 @@ export default function LandingPage() {
       name: "Enterprise",
       price: "Custom",
       period: "",
-      description: "For organizations needing full-scale AI search intelligence.",
+      description: "For large organizations requiring full AI search intelligence.",
       features: [
-        "Unlimited brand profiles",
-        "All AI platform monitoring",
-        "Real-time visibility tracking",
-        "Full perception audit suite",
-        "Advanced competitive intel",
+        "Unlimited keywords",
+        "Unlimited competitors",
+        "Real-time monitoring",
+        "Dedicated strategist",
+        "API access",
         "Custom integrations",
-        "Dedicated success manager",
+        "White-label reports",
         "SLA guarantee",
       ],
       highlighted: false,
     },
   ];
 
-  const faqItems: FaqItem[] = [
-    {
-      question: "What is AI Search Intelligence?",
-      answer:
-        "AI Search Intelligence is a new category of brand strategy focused on understanding and improving how your brand appears in AI-powered search experiences like ChatGPT, Perplexity, Google AI Overviews, and other generative AI platforms.",
-    },
-    {
-      question: "How is this different from traditional SEO?",
-      answer:
-        "Traditional SEO focuses on ranking in organic search results with links. AI Search Intelligence focuses on how AI models understand, perceive, and recommend your brand in conversational AI responses — a fundamentally different challenge requiring new strategies.",
-    },
-    {
-      question: "Which AI platforms do you monitor?",
-      answer:
-        "We monitor all major AI search platforms including ChatGPT, Perplexity, Google Gemini, Claude, Microsoft Copilot, and emerging AI search experiences. Our coverage expands as new platforms gain adoption.",
-    },
-    {
-      question: "How quickly can I see results?",
-      answer:
-        "You will receive your first brand perception audit within 24 hours of setup. Ongoing visibility tracking begins immediately, and most brands see actionable insights within the first week.",
-    },
-    {
-      question: "Can I track competitors?",
-      answer:
-        "Yes. Our Professional and Enterprise plans include competitive intelligence features that let you benchmark your AI search visibility against competitors and identify strategic opportunities.",
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-white text-gray-900">
-      {/* Navbar */}
+      {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">
-              <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-violet-600 to-indigo-600 flex items-center justify-center">
-                <Search className="h-4 w-4 text-white" />
-              </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">
-                Luminr
-              </span>
+              <Zap className="h-6 w-6 text-indigo-600" />
+              <span className="text-xl font-bold text-gray-900">Luminr</span>
             </div>
 
+            {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-8">
               <a href="#features" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
                 Features
@@ -240,12 +204,13 @@ export default function LandingPage() {
                 </Button>
               </a>
               <a href="/register">
-                <Button className="text-sm bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white">
+                <Button className="text-sm bg-indigo-600 hover:bg-indigo-700 text-white">
                   Get Started
                 </Button>
               </a>
             </div>
 
+            {/* Mobile menu button */}
             <button
               className="md:hidden p-2"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -256,32 +221,35 @@ export default function LandingPage() {
           </div>
         </div>
 
+        {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden bg-white border-b border-gray-100 px-4 py-4 space-y-3">
-            <a href="#features" className="block text-sm text-gray-600 hover:text-gray-900">
-              Features
-            </a>
-            <a href="#how-it-works" className="block text-sm text-gray-600 hover:text-gray-900">
-              How It Works
-            </a>
-            <a href="#pricing" className="block text-sm text-gray-600 hover:text-gray-900">
-              Pricing
-            </a>
-            <a href="#faq" className="block text-sm text-gray-600 hover:text-gray-900">
-              FAQ
-            </a>
-            <Separator />
-            <div className="flex flex-col gap-2 pt-2">
-              <a href="/login">
-                <Button variant="outline" className="w-full text-sm">
-                  Sign In
-                </Button>
+          <div className="md:hidden border-t border-gray-100 bg-white">
+            <div className="px-4 py-4 space-y-3">
+              <a href="#features" className="block text-sm text-gray-600 hover:text-gray-900">
+                Features
               </a>
-              <a href="/register">
-                <Button className="w-full text-sm bg-gradient-to-r from-violet-600 to-indigo-600 text-white">
-                  Get Started
-                </Button>
+              <a href="#how-it-works" className="block text-sm text-gray-600 hover:text-gray-900">
+                How It Works
               </a>
+              <a href="#pricing" className="block text-sm text-gray-600 hover:text-gray-900">
+                Pricing
+              </a>
+              <a href="#faq" className="block text-sm text-gray-600 hover:text-gray-900">
+                FAQ
+              </a>
+              <Separator />
+              <div className="flex flex-col gap-2 pt-2">
+                <a href="/login">
+                  <Button variant="ghost" className="w-full text-sm">
+                    Sign In
+                  </Button>
+                </a>
+                <a href="/register">
+                  <Button className="w-full text-sm bg-indigo-600 hover:bg-indigo-700 text-white">
+                    Get Started
+                  </Button>
+                </a>
+              </div>
             </div>
           </div>
         )}
@@ -292,53 +260,65 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto text-center">
           <Badge variant="secondary" className="mb-6 px-4 py-1.5 text-sm font-medium">
             <Sparkles className="h-3.5 w-3.5 mr-1.5" />
-            The Future of Brand Visibility
+            AI Search Intelligence Platform
           </Badge>
-
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
-            <span className="bg-gradient-to-r from-violet-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
-              AI Search Intelligence
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 max-w-4xl mx-auto leading-tight">
+            Own Your Visibility in{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
+              AI Search
             </span>
-            <br />
-            <span className="text-gray-900">for Modern Brands</span>
           </h1>
-
-          <p className="max-w-2xl mx-auto text-lg sm:text-xl text-gray-600 mb-10 leading-relaxed">
-            The strategic OS that helps businesses understand and grow their visibility across AI-powered search
-            experiences. From brand perception audits to opportunity discovery.
+          <p className="mt-6 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            The strategic operating system that helps businesses understand, track, and grow their presence in AI-generated search results. Go beyond dashboards — take action.
           </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="/register">
-              <Button
-                size="lg"
-                className="text-base px-8 py-6 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white shadow-lg shadow-violet-500/25"
-              >
+              <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-6 text-base">
                 Get Started Free
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </a>
             <a href="#how-it-works">
-              <Button variant="outline" size="lg" className="text-base px-8 py-6">
+              <Button size="lg" variant="outline" className="px-8 py-6 text-base">
                 See How It Works
               </Button>
             </a>
           </div>
+          <p className="mt-4 text-sm text-gray-500">No credit card required. Free 14-day trial.</p>
 
-          <div className="mt-16 max-w-4xl mx-auto">
-            <div className="relative rounded-2xl border border-gray-200 bg-gradient-to-b from-gray-50 to-white p-8 shadow-2xl shadow-violet-500/5">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                <div>
-                  <div className="text-3xl font-bold text-violet-600">12+</div>
-                  <div className="text-sm text-gray-500 mt-1">AI Platforms Monitored</div>
+          {/* Hero Visual */}
+          <div className="mt-16 relative">
+            <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent z-10 pointer-events-none" />
+            <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl border border-gray-200 shadow-2xl p-8 sm:p-12 max-w-5xl mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                  <div className="text-3xl font-bold text-indigo-600">87%</div>
+                  <div className="text-sm text-gray-600 mt-1">AI Visibility Score</div>
+                  <div className="mt-3 h-2 bg-gray-100 rounded-full overflow-hidden">
+                    <div className="h-full w-[87%] bg-indigo-500 rounded-full" />
+                  </div>
                 </div>
-                <div>
-                  <div className="text-3xl font-bold text-violet-600">500K+</div>
-                  <div className="text-sm text-gray-500 mt-1">Queries Analyzed Daily</div>
+                <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                  <div className="text-3xl font-bold text-green-600">+34%</div>
+                  <div className="text-sm text-gray-600 mt-1">Monthly Growth</div>
+                  <div className="mt-3 flex items-end gap-1 h-8">
+                    {[30, 45, 35, 55, 50, 70, 65, 80].map((height, i) => (
+                      <div
+                        key={i}
+                        className="flex-1 bg-green-200 rounded-sm"
+                        style={{ height: `${height}%` }}
+                      />
+                    ))}
+                  </div>
                 </div>
-                <div>
-                  <div className="text-3xl font-bold text-violet-600">98%</div>
-                  <div className="text-sm text-gray-500 mt-1">Client Satisfaction</div>
+                <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                  <div className="text-3xl font-bold text-purple-600">12</div>
+                  <div className="text-sm text-gray-600 mt-1">Action Items</div>
+                  <div className="mt-3 space-y-1.5">
+                    <div className="h-2 bg-purple-100 rounded-full w-full" />
+                    <div className="h-2 bg-purple-100 rounded-full w-3/4" />
+                    <div className="h-2 bg-purple-100 rounded-full w-1/2" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -350,26 +330,20 @@ export default function LandingPage() {
       <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <Badge variant="secondary" className="mb-4 px-3 py-1 text-sm">
-              Features
-            </Badge>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              Everything you need for AI search visibility
+            <Badge variant="secondary" className="mb-4">Features</Badge>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
+              Your Strategic Edge in AI Search
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              A comprehensive platform built specifically for understanding and growing your brand presence in
-              AI-powered search experiences.
+            <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+              Luminr goes beyond passive monitoring. Get a complete operating system for understanding and improving your AI search presence.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature, index) => (
-              <Card
-                key={index}
-                className="border-gray-200 hover:border-violet-200 hover:shadow-lg hover:shadow-violet-500/5 transition-all duration-300"
-              >
+              <Card key={index} className="border border-gray-200 hover:border-indigo-200 hover:shadow-lg transition-all duration-300">
                 <CardHeader>
-                  <div className="h-12 w-12 rounded-lg bg-violet-50 flex items-center justify-center mb-3">
+                  <div className="h-12 w-12 rounded-lg bg-indigo-50 flex items-center justify-center mb-3">
                     {feature.icon}
                   </div>
                   <CardTitle className="text-lg">{feature.title}</CardTitle>
@@ -385,35 +359,29 @@ export default function LandingPage() {
       <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <Badge variant="secondary" className="mb-4 px-3 py-1 text-sm">
-              How It Works
-            </Badge>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              From setup to insights in minutes
+            <Badge variant="secondary" className="mb-4">How It Works</Badge>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
+              From Setup to Strategy in Minutes
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Get started quickly and begin understanding your AI search visibility with our streamlined workflow.
+            <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+              Getting started with Luminr is simple. Our platform does the heavy lifting so you can focus on growing.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((step, index) => (
               <div key={index} className="relative">
-                <div className="flex flex-col items-center text-center">
-                  <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-violet-50 to-indigo-50 border border-violet-100 flex items-center justify-center mb-4">
+                {index < steps.length - 1 && (
+                  <div className="hidden lg:block absolute top-12 left-full w-full h-px bg-gradient-to-r from-indigo-200 to-transparent z-0" />
+                )}
+                <div className="relative z-10 text-center">
+                  <div className="h-16 w-16 rounded-2xl bg-indigo-50 flex items-center justify-center mx-auto mb-4">
                     {step.icon}
                   </div>
-                  <span className="text-xs font-bold text-violet-600 uppercase tracking-wider mb-2">
-                    Step {step.number}
-                  </span>
-                  <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{step.description}</p>
+                  <div className="text-xs font-bold text-indigo-600 mb-2">STEP {step.number}</div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{step.title}</h3>
+                  <p className="text-sm text-gray-600">{step.description}</p>
                 </div>
-                {index < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-8 left-full w-full">
-                    <div className="h-px w-3/4 bg-gradient-to-r from-violet-200 to-transparent mx-auto" />
-                  </div>
-                )}
               </div>
             ))}
           </div>
@@ -424,47 +392,43 @@ export default function LandingPage() {
       <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <Badge variant="secondary" className="mb-4 px-3 py-1 text-sm">
-              Pricing
-            </Badge>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              Plans that scale with your brand
+            <Badge variant="secondary" className="mb-4">Pricing</Badge>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
+              Plans That Scale With You
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Start small and scale as your AI search strategy matures. All plans include a 14-day free trial.
+            <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+              Start free, upgrade when you need more power. Every plan includes core AI search intelligence.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {pricingPlans.map((plan, index) => (
+            {pricingTiers.map((tier, index) => (
               <Card
                 key={index}
                 className={`relative ${
-                  plan.highlighted
-                    ? "border-violet-300 shadow-xl shadow-violet-500/10 scale-105"
+                  tier.highlighted
+                    ? "border-indigo-500 shadow-xl scale-105"
                     : "border-gray-200"
                 }`}
               >
-                {plan.badge && (
+                {tier.badge && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <Badge className="bg-gradient-to-r from-violet-600 to-indigo-600 text-white px-3 py-0.5">
-                      {plan.badge}
-                    </Badge>
+                    <Badge className="bg-indigo-600 text-white px-3 py-1">{tier.badge}</Badge>
                   </div>
                 )}
-                <CardHeader className="text-center pb-4">
-                  <CardTitle className="text-xl">{plan.name}</CardTitle>
-                  <CardDescription>{plan.description}</CardDescription>
-                  <div className="pt-4">
-                    <span className="text-4xl font-bold">{plan.price}</span>
-                    <span className="text-gray-500">{plan.period}</span>
-                  </div>
+                <CardHeader className="pb-4">
+                  <CardTitle className="text-xl">{tier.name}</CardTitle>
+                  <CardDescription>{tier.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
+                  <div className="mb-6">
+                    <span className="text-4xl font-bold text-gray-900">{tier.price}</span>
+                    <span className="text-gray-600">{tier.period}</span>
+                  </div>
                   <ul className="space-y-3">
-                    {plan.features.map((feature, featureIndex) => (
+                    {tier.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-violet-500 mt-0.5 flex-shrink-0" />
+                        <Check className="h-4 w-4 text-indigo-600 mt-0.5 shrink-0" />
                         <span className="text-sm text-gray-700">{feature}</span>
                       </li>
                     ))}
@@ -474,11 +438,11 @@ export default function LandingPage() {
                   <a href="/register" className="w-full">
                     <Button
                       className={`w-full ${
-                        plan.highlighted
-                          ? "bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white"
+                        tier.highlighted
+                          ? "bg-indigo-600 hover:bg-indigo-700 text-white"
                           : ""
                       }`}
-                      variant={plan.highlighted ? "default" : "outline"}
+                      variant={tier.highlighted ? "default" : "outline"}
                     >
                       Get Started
                     </Button>
@@ -493,98 +457,90 @@ export default function LandingPage() {
       {/* FAQ Section */}
       <section id="faq" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-12">
-            <Badge variant="secondary" className="mb-4 px-3 py-1 text-sm">
-              FAQ
-            </Badge>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Frequently asked questions</h2>
-            <p className="text-lg text-gray-600">
-              Everything you need to know about Luminr and AI Search Intelligence.
-            </p>
+          <div className="text-center mb-16">
+            <Badge variant="secondary" className="mb-4">FAQ</Badge>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
+              Frequently Asked Questions
+            </h2>
           </div>
 
           <Accordion type="single" collapsible className="w-full">
-            {faqItems.map((item, index) => (
-              <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="text-left font-medium">
-                  {item.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-gray-600">
-                  {item.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
+            <AccordionItem value="item-1">
+              <AccordionTrigger>What is AI search visibility?</AccordionTrigger>
+              <AccordionContent>
+                AI search visibility refers to how often and prominently your brand, products, or content are mentioned or recommended in AI-generated search results from platforms like ChatGPT, Perplexity, Google AI Overviews, and other AI assistants. As more users turn to AI for answers, being visible in these results becomes critical for business growth.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionTrigger>How is Luminr different from traditional SEO tools?</AccordionTrigger>
+              <AccordionContent>
+                Traditional SEO tools focus on search engine rankings and keyword positions. Luminr is purpose-built for AI search — it tracks how AI models reference your brand, provides strategic recommendations to improve AI visibility, and acts as an operating system for AI search growth rather than just a reporting dashboard.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+              <AccordionTrigger>Which AI platforms does Luminr track?</AccordionTrigger>
+              <AccordionContent>
+                Luminr currently tracks visibility across major AI search platforms including ChatGPT, Google AI Overviews, Perplexity, Microsoft Copilot, and Claude. We continuously add new platforms as the AI search landscape evolves.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-4">
+              <AccordionTrigger>How quickly can I see results?</AccordionTrigger>
+              <AccordionContent>
+                You can start seeing visibility data within minutes of setup. Strategic improvements typically show measurable results within 2-4 weeks, depending on your industry and the recommendations you implement. Our platform provides real-time tracking so you can monitor progress continuously.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-5">
+              <AccordionTrigger>Is there a free trial?</AccordionTrigger>
+              <AccordionContent>
+                Yes! Every plan comes with a 14-day free trial with full access to all features. No credit card is required to start. You can explore the platform, see your AI visibility data, and receive strategic recommendations before committing to a paid plan.
+              </AccordionContent>
+            </AccordionItem>
           </Accordion>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="relative rounded-3xl bg-gradient-to-br from-violet-600 via-indigo-600 to-purple-700 p-12 sm:p-16 text-center overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.1),transparent)]" />
-            <div className="relative z-10">
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-                Ready to own your AI search presence?
-              </h2>
-              <p className="text-lg text-violet-100 mb-8 max-w-2xl mx-auto">
-                Join forward-thinking brands already using Luminr to understand and grow their visibility in
-                AI-powered search experiences.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="/register">
-                  <Button
-                    size="lg"
-                    className="text-base px-8 py-6 bg-white text-violet-700 hover:bg-gray-100 shadow-lg"
-                  >
-                    Get Started Free
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </a>
-                <a href="/login">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="text-base px-8 py-6 border-white/30 text-white hover:bg-white/10 bg-transparent"
-                  >
-                    Sign In
-                  </Button>
-                </a>
-              </div>
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-3xl p-12 sm:p-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              Ready to Dominate AI Search?
+            </h2>
+            <p className="text-lg text-indigo-100 mb-8 max-w-2xl mx-auto">
+              Join forward-thinking businesses already using Luminr to grow their visibility in AI-generated search results. Start your free trial today.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a href="/register">
+                <Button size="lg" className="bg-white text-indigo-700 hover:bg-gray-100 px-8 py-6 text-base font-semibold">
+                  Get Started Free
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </a>
+              <a href="/login">
+                <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8 py-6 text-base">
+                  Sign In
+                </Button>
+              </a>
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <footer className="border-t border-gray-200 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-2">
-              <div className="h-7 w-7 rounded-lg bg-gradient-to-br from-violet-600 to-indigo-600 flex items-center justify-center">
-                <Search className="h-3.5 w-3.5 text-white" />
-              </div>
-              <span className="text-lg font-bold bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">
-                Luminr
-              </span>
+              <Zap className="h-5 w-5 text-indigo-600" />
+              <span className="text-lg font-bold text-gray-900">Luminr</span>
             </div>
-
-            <div className="flex items-center gap-6 text-sm text-gray-500">
-              <a href="#features" className="hover:text-gray-900 transition-colors">
-                Features
-              </a>
-              <a href="#pricing" className="hover:text-gray-900 transition-colors">
-                Pricing
-              </a>
-              <a href="#faq" className="hover:text-gray-900 transition-colors">
-                FAQ
-              </a>
-              <a href="/login" className="hover:text-gray-900 transition-colors">
-                Sign In
-              </a>
+            <div className="flex items-center gap-6 text-sm text-gray-600">
+              <a href="#features" className="hover:text-gray-900 transition-colors">Features</a>
+              <a href="#pricing" className="hover:text-gray-900 transition-colors">Pricing</a>
+              <a href="#faq" className="hover:text-gray-900 transition-colors">FAQ</a>
+              <a href="/login" className="hover:text-gray-900 transition-colors">Sign In</a>
             </div>
-
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-gray-500">
               {"© 2024 Luminr. All rights reserved."}
             </p>
           </div>
