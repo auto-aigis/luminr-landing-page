@@ -393,7 +393,9 @@ function DashboardContent() {
   );
 }
 
-<Suspense fallback={
+export default function DashboardPage() {
+  return (
+    <Suspense fallback={
       <div className="p-6">
         <Skeleton className="h-8 w-48 mb-6" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
